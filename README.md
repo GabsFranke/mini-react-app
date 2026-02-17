@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Job Application Portal
+
+A Next.js application for applying to job positions with GitHub repository submissions.
+
+## Tech Stack
+
+- **Next.js 16** - React framework with App Router
+- **TypeScript** - Type safety
+- **TanStack Query (React Query)** - Data fetching and state management
+- **Tailwind CSS** - Styling
+- **React Hot Toast** - Toast notifications
+
+## Features
+
+- Candidate authentication via email
+- Job listing from API
+- Apply to jobs with GitHub repository URL
+- Loading states and error handling
+- Form validation
+- Responsive design
 
 ## Getting Started
 
-First, run the development server:
-
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Run the development server:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+app/
+├── components/
+│   ├── CandidateForm.tsx  # Email input form
+│   ├── JobList.tsx        # Job listings container
+│   └── JobCard.tsx        # Individual job card with apply form
+├── lib/
+│   └── api.ts             # API client functions
+├── types/
+│   └── index.ts           # TypeScript interfaces
+├── providers.tsx          # React Query and Toast providers
+├── layout.tsx             # Root layout
+└── page.tsx               # Home page
+```
 
-To learn more about Next.js, take a look at the following resources:
+## How It Works
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. User enters their email address
+2. System fetches candidate data from API
+3. Available job positions are displayed
+4. User can enter GitHub repository URL for each position
+5. Submit application with validation
+6. Success/error feedback via toast notifications
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## API Endpoints
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `GET /api/candidate/get-by-email?email={email}` - Get candidate data
+- `GET /api/jobs/get-list` - Get available jobs
+- `POST /api/candidate/apply-to-job` - Submit job application
